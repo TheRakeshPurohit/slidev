@@ -1,18 +1,19 @@
 /**
  * <v-click/> click animations component
  *
- * Learn more: https://sli.dev/guide/animations.html#click-animations
+ * Learn more: https://sli.dev/guide/animations.html#click-animation
  */
 
 import type { PropType, VNode } from 'vue'
-import { Text, defineComponent, h } from 'vue'
+import { defineComponent, h, Text } from 'vue'
+import { CLICKS_MAX } from '../constants'
 import VClicks from './VClicks'
 
 export default defineComponent({
   props: {
     at: {
       type: [Number, String],
-      default: null,
+      default: '+1',
     },
     hide: {
       type: Boolean,
@@ -31,10 +32,11 @@ export default defineComponent({
     return h(
       VClicks,
       {
-        every: 99999,
+        every: CLICKS_MAX,
         at: this.at,
         hide: this.hide,
         fade: this.fade,
+        handleSpecialElements: false,
       },
       {
         default: () =>
